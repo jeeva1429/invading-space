@@ -53,10 +53,12 @@ for row in range(3):
         y = 80 + row * 60
         enemies.append(Enemy(x, y))
 
+
 # print(enemies)
 player_obj = Player()
 
-
+# for enemy in enemies:
+# print(enemy.width)
 frame_count = 0
 
 has_reached_right = False
@@ -91,25 +93,27 @@ while running:
             enemies[16].position.x, enemies[32].position.x, enemies[50].position.x
         )
         right_most = float("-inf")
-        for enemy in enemies:
-            right_most = max(right_most, enemy.x)
-
         left_most = float("inf")
-        for enemy in enemies:
-            left_most = min(left_most, enemy.x)
+        if len(enemies) > 0
+            for enemy in enemies:
+                right_most = max(right_most, enemy.position.x)  # assign the maximum value for right most end
 
-        if not has_reached_right:
-            if right_most + 20 <= screen.get_width() - 40:
-                for enemy in enemies:
-                    enemy.position.x += 20
-            else:
-                has_reached_right = True
-        elif has_reached_right:
-            if left_most - 20 >= 0:
-                for enemy in enemies:
-                    enemy.position.x -= 20
-            else:
-                has_reached_right = False
+            for enemy in enemies:
+                left_most = min(left_most, enemy.position.x)  # assign the minimum value for left most end
+
+            if not has_reached_right:
+                # print()
+                if right_most + 20 <= screen.get_width() - 40:
+                    for enemy in enemies:
+                        enemy.position.x += 20
+                else:
+                    has_reached_right = True
+            elif has_reached_right:
+                if left_most - 20 >= 0:
+                    for enemy in enemies:
+                        enemy.position.x -= 20
+                else:
+                    has_reached_right = False
 
         last_moved_time = pygame.time.get_ticks()
 
