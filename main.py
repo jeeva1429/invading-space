@@ -95,37 +95,25 @@ while running:
         )
         right_most = float("-inf")
         left_most = float("inf")
-        if len(enemies) > 0:
+        if len(enemies) > 0
             for enemy in enemies:
-                right_most = max(
-                    right_most, enemy.position.x
-                )  # assign the maximum value for right most end
+                right_most = max(right_most, enemy.position.x)  # assign the maximum value for right most end
 
             for enemy in enemies:
-                left_most = min(
-                    left_most, enemy.position.x
-                )  # assign the minimum value for left most end
+                left_most = min(left_most, enemy.position.x)  # assign the minimum value for left most end
 
             if not has_reached_right:
                 # print()
                 if right_most + 20 <= screen.get_width() - 40:
                     for enemy in enemies:
-                        enemy.position.x += 30
+                        enemy.position.x += 20
                 else:
-                    for enemy in enemies:
-                        enemy.position.y += (
-                            50  # after reaching the extreme, go down some position
-                        )
                     has_reached_right = True
             elif has_reached_right:
                 if left_most - 20 >= 0:
                     for enemy in enemies:
-                        enemy.position.x -= 30
+                        enemy.position.x -= 20
                 else:
-                    for enemy in enemies:
-                        enemy.position.y += (
-                            50  # after reaching the extreme, go down some position
-                        )
                     has_reached_right = False
 
         last_moved_time = pygame.time.get_ticks()
